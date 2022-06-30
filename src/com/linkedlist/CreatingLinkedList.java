@@ -1,14 +1,15 @@
 package com.linkedlist;
 //Represent a node of the singly linked list
-class Node{
-    int data;
-    Node next;
-    public Node(int data){
-        this.data=data;
-    }
-}
-
 public class CreatingLinkedList {
+    class Node {
+        public int data;
+        public Node next;
+
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
 
     //Represent the head and tail of the singly linked list
     public Node head=null;
@@ -30,7 +31,7 @@ public class CreatingLinkedList {
         Node current =head;
         if (head==null){
             System.out.println("Linked list is empty");
-        }System.out.println("Adding nodes to the linked list: ");
+        }System.out.println("Adding nodes at starting to the linked list: ");
         while (current!=null){
             System.out.print(current.data+" ");
             current=current.next;
