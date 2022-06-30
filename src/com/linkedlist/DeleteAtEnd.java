@@ -2,7 +2,7 @@ package com.linkedlist;
 
 import java.util.Scanner;
 
-public class DeleteFromStart {
+public class DeleteAtEnd {
     public Node head = null;
     public Node tail = null;
 
@@ -60,8 +60,32 @@ public class DeleteFromStart {
             }
         }
     }
+    public void deleteEnd(){
+        //Checks if the list is empty
+        if(head == null) {
+            System.out.println("List is empty");
+        }
+        else {
+            //Checks whether the list contains only one element
+            if(head != tail ) {
+                Node current = head;
+                //Loop through the list till the second last element such that current.next is pointing to tail
+                while(current.next != tail) {
+                    current = current.next;
+                }
+                //Second last element will become new tail of the list
+                tail = current;
+                tail.next = null;
+            }
+            //If the list contains only one element
+            //Then it will remove it and both head and tail will point to null
+            else {
+                head = tail = null;
+            }
+        }
+}
     public static void insertStart() {
-        DeleteFromStart list1 = new DeleteFromStart();
+        DeleteAtEnd list1 = new DeleteAtEnd();
         list1.insertingAtStart(70);
         list1.insertingAtEnd(30);
         list1.insertingAtEnd(56);
@@ -71,7 +95,7 @@ public class DeleteFromStart {
     }
 
     public static void insertEnd() {
-        AddingAtBetween list = new AddingAtBetween();
+        DeleteAtEnd list = new DeleteAtEnd();
         list.insertingAtEnd(56);
         list.insertingAtEnd(30);
         list.insertingAtEnd(70);
@@ -81,7 +105,7 @@ public class DeleteFromStart {
     }
 
     public static void insertBetween() {
-        DeleteFromStart list = new DeleteFromStart();
+        DeleteAtEnd list = new DeleteAtEnd();
         Node secondNode = list.insertingAtStart(70);
         Node firstNode = list.insertingAtStart(56);
         Node newNode = new Node(30);
@@ -93,12 +117,22 @@ public class DeleteFromStart {
     }
 
     public static void deleteAtStart() {
-        DeleteFromStart list = new DeleteFromStart();
+        DeleteAtEnd list = new DeleteAtEnd();
         list.insertingAtStart(70);
         list.insertingAtEnd(30);
         list.insertingAtEnd(56);
         System.out.println("After adding nodes at start:----------");
         list.deleteStart();
+        list.display();
+        System.out.println();
+    }
+    public static void deleteAtEnd() {
+        DeleteAtEnd list = new DeleteAtEnd();
+        list.insertingAtEnd(56);
+        list.insertingAtEnd(30);
+        list.insertingAtEnd(70);
+        System.out.println("After adding nodes at end:----------");
+        list.deleteEnd();
         list.display();
         System.out.println();
     }
@@ -108,11 +142,11 @@ public class DeleteFromStart {
         System.out.println("NOTE: You can perform Operations for 10 times.");
         Scanner scan = new Scanner(System.in);
         for (int i = 0; i < 10; i++) {
-            System.out.println("1) Insert at Start 2) Insert at End 3) Insert at Middle 4) Delete at Start 5) End of Operation");
-                System.out.print("Choose the operation you want to perform: ");
+            System.out.println("1) Insert at Start 2) Insert at End 3) Insert at Middle 4) Delete at Start 5) Delete at End 6) End of Operation ");
+            System.out.print("Choose the operation you want to perform: ");
             int input=scan.nextInt();
-            if(input<5)
-             {
+            if(input<6)
+            {
                 switch (input) {
                     case 1:
                         insertStart();
@@ -126,6 +160,8 @@ public class DeleteFromStart {
                     case 4:
                         deleteAtStart();
                         break;
+                    case 5: deleteAtEnd();
+                    break;
                 }
             }else{
                 {
@@ -133,6 +169,6 @@ public class DeleteFromStart {
                     break;
                 }
             }
-            }
         }
     }
+}
